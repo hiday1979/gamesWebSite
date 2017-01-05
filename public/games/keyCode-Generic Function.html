@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>משחק כספת</title>
+		
+		<style>
+			.body{
+				direction:rtl;
+			}
+			.btn , .nums{
+				width:50px;
+				text-align: center;
+				margin:5px;
+			}
+			.containerNum{
+				display:inline-block;
+				width:70px;
+			}
+			.container{
+				width:40%;
+				text-align:center;
+				margin: 200px auto;
+				font-family: Arial;
+				border: 1px solid black;
+				padding-bottom: 100px;
+			}
+			
+			.message-success{
+				font-size: 20px;
+				color: green;
+				
+			
+			}
+			
+			.message-error{
+				font-size: 20px;
+				color: red;
+			}
+		
+		</style>
+		<script>
+			// page onload get new code.. 
+			function init(){
+			
+				getRandomCode();
+			}
+			
+			
+			
+			// Setting for + and - buttons
+			function setCode( part, action ){
+			
+			// 1. checking with part
+			// 2. checking with action
+			// 3. change the number.
+			
+				if ( part == 1 ){
+					num = parseInt(num1.innerHTML);
+					if (action == "plus"){
+						num1.innerHTML = num != 9 ? num + 1 : 0;
+					}else{
+						num1.innerHTML = num != 0 ? num - 1 : 9;
+					}
+				}else if( part == 2 ){
+					num = parseInt(num2.innerHTML);
+					if (action == "plus"){
+						num2.innerHTML = num != 9 ? num + 1 : 0;
+					}else{
+						num2.innerHTML = num != 0 ? num - 1 : 9;
+					}
+				}else{
+					num = parseInt(num3.innerHTML);
+					if (action == "plus"){
+						num3.innerHTML = num != 9 ? num + 1 : 0;
+					}else{
+						num3.innerHTML = num != 0 ? num - 1 : 9;
+					}
+				}
+			}
+			
+			var checkCounter = 0;
+			var lifeCounter  = 0;
+			
+			function chackCode(){
+				
+				var testNum1 = num1.innerHTML;
+					testNum1 = parseInt(testNum1);
+				var testNum2 = num2.innerHTML;
+					testNum2 = parseInt(testNum2);
+				var testNum3 = num3.innerHTML;
+					testNum3 = parseInt(testNum3);
+				
+				if (testNum1 == codeNumber1 && testNum2 == codeNumber2 && testNum3 == codeNumber3){
+					message.innerHTML = "<span class='message-success'>כל הכבוד! פיצחת את הכספת</span> ";
+					checkCounter = 0;
+					lifeCounter++;
+					getRandomCode();
+					life.innerHTML =  "LIFE: " + lifeCounter;					
+				}else{
+					checkCounter++;
+					message.innerHTML = "<span class='message-error'>הקוד אינו תואם, זהו נסיוך ה "+ checkCounter +" , ניתן לנסות שוב</span> ";
+					
+				}
+			
+			}
+			
+			
+			// Challenge mission - getRandomCode
+			var codeNumber1 = 0;
+			var codeNumber2 = 0;
+			var codeNumber3 = 0;
+			
+			function getRandomCode(){
+				var code = Math.random(); // Math.random() - returns random float number between 0 - 1.
+				//console.log(code);
+				code = parseInt(code * 10); // parseInt() - gettin string or float and returns integer.
+				//console.log(code); 
+
+				
+				codeNumber1 = Math.floor((Math.random() * 10) + 1);
+				codeNumber2 = Math.floor((Math.random() * 10) + 1);
+				codeNumber3 = Math.floor((Math.random() * 10) + 1);
+				console.log(codeNumber1 + " , " + codeNumber2 + " , " + codeNumber3); 
+			}
+			
+		
+		</script>
+		
+		
+		
+    </head>
+
+    <body onload="init()">
+    
+		<div class="container">
+		
+			<h1>משחק כספת - Generic Function</h1>
+			<h3 id="life">LIFE: 0</h3>
+			<div class="containerNum">
+				<button onclick="setCode( 1, 'plus' )"  class="btn">+</button>
+				<div id="num1" class="nums">0</div>
+				<button onclick="setCode( 1, 'minus' )" class="btn">-</button>
+			</div>
+			
+			<div class="containerNum">
+				<button onclick="setCode( 2, 'plus' )" class="btn">+</button>
+				<div id="num2" class="nums">0</div>
+				<button onclick="setCode( 2, 'minus' )" class="btn">-</button>
+			</div>
+			
+			<div class="containerNum">
+				<button onclick="setCode( 3, 'plus' )" class="btn">+</button>
+				<div id="num3" class="nums">0</div>
+				<button onclick="setCode( 3, 'minus' )" class="btn">-</button>
+			</div>
+			
+			<hr/>
+			<button onclick="chackCode()" >לבדיקת הקוד לחצו כאן</button>
+			<hr/>
+			<div id="message" class="message">
+			במשחק זה יש לפצח את הקוד של הכספת
+				, אתם מוזמנים להתחיל במשחק
+			</div>
+
+		</div>
+    
+    
+    </body>
+</html>

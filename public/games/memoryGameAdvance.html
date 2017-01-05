@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var cardBackPath = "img/back.jpg";
+			var gameLevels = [{rows:2,cols:3}, {rows:3,cols:4}, {rows:4, cols:6}];
+			var counter = 0;
+			var images;
+			var options;
+			var secondCardFlip = true;
+			var firstCard;
+			var firstCardIndex;
+			var menuDiv;
+			var rightGuesses = 0;
+			var gameDiv;
+			var totalCards;
+			var lockScreen;
+			
+			function addImages(){
+				images = [];
+				var numOfImages = totalCards / 2;
+				var imgStart = "img/";
+				var imgEnd = ".jpg";
+				for (var i = 1; i <= numOfImages; i++){
+					var img = imgStart + i + imgEnd + "";
+					//alert(img);
+					images.push(img);
+				}
+			}
+			
+			function addOptions(){
+				options = [];
+				var numOfOptions = totalCards / 2;
+				for(var i = 0; i < numOfOptions; i++){
+					options.push(i);
+					options.push(i);
+				}
+				//alert(options);
+			}
+		
+			function balagan(){
+				for(var i = 0; i < options.length; i++){
+					var x = Math.floor(Math.random() * totalCards);
+					var temp = options[x];
+					options[x] = options[i];
+					options[i] = temp;
+				}
+				//alert(options);
+			}
+		
+			function startGame(x){
+				totalCards = gameLevels[x].rows * gameLevels[x].cols;
+				addImages();
+				addOptions();
+				balagan();
+				menuDiv = document.getElementById("menu");
+				menuDiv.style.display = "none";
+				gameDiv = document.getElementById("game");	// mainDiv pointer.
+				for(var i = 0; i < gameLevels[x].rows; i++){
+					var row = document.createElement("div");		// create div for every row.
+					for(var j = 0; j < gameLevels[x].cols; j++){
+					/*
+						var card = document.createElement("img");	// create <img> tag.
+						card.setAttribute("src", cardBackPath);		// add attribute (src) to img;
+						card.setAttribute("onclick", "cardClick(" + counter + ",this)");
+						*/
+						var card = "<img src='img/back.jpg' onclick='cardClick(" + counter + ", this);' />";
+						counter++;
+						row.innerHTML += card;					// insert card into row(img into div).
+					}
+					gameDiv.appendChild(row);					// insert row into mainDiv.
+				}
+			}
+			
+			function cardClick(number, card){
+				//alert(number);
+				if(number != firstCardIndex && !lockScreen){
+					//alert(images[options[number]]);
+					secondCardFlip = !secondCardFlip;
+					/*
+					if(secondCardFlip == true){
+						secondCardFlip = false;
+					}else{
+						secondCardFlip = true;
+					}
+					*/
+					
+					
+					card.setAttribute("src", images[options[number]]);
+					if(secondCardFlip){		// shortcut to (secondCardFlip == true)
+						if(checkCards(number)){	// same as => if(checkCards(number) == true)
+							 //alert("cards the same.");
+							 card.setAttribute("onclick", "");		// cancel the onclick for the second card.
+							 firstCard.setAttribute("onclick", "");	// cancel the onclick for the first card.
+							 rightGuesses++;
+							 if(rightGuesses == totalCards / 2)
+							 {
+							
+								endGame();
+							 }
+						}else{
+							 //alert("cards are different.");
+							 lockScreen = true;
+							 setTimeout(function(){
+								card.setAttribute("src", cardBackPath);
+								firstCard.setAttribute("src", cardBackPath);
+								lockScreen = false;
+							 }, 2000);
+							
+						}
+						firstCardIndex = -1;
+					}else{
+						// this is the odd card.(1,3,5,7,9);
+						firstCardIndex = number;
+						firstCard = card;
+					}
+				}
+			}
+		
+			
+			function endGame(){
+				//setTimeout(function (){},500);
+				//alert("WELL DONE !!!!");
+				menuDiv.style.display = "inline";
+				gameDiv.innerHTML = "";
+				counter = 0;
+				rightGuesses = 0;}
+			
+			function checkCards(secondCardIndex){
+				return options[firstCardIndex] == options[secondCardIndex];
+				/*	UGLY!!!
+				if(options[firstCardIndex] == options[secondCardIndex]){
+					return true;
+				}else{
+					return false;
+				}
+				*/
+			}
+			
+		</script>
+		<style>
+			img {
+				width: 15%;
+				height: 200px;
+				margin:5px;
+			}
+			button
+			{
+				height: 300px;
+				width:450px;
+				background-color:yellow;
+				font-size:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="menu">
+			<button onclick="startGame(0);">easy</button>
+			<button onclick="startGame(1);">medium</button>
+			<button onclick="startGame(2);">hard</button>
+		</div>
+		<div id="game">
+		<!--<img id="pic" src="img/1.jpg">
+		<br/>
+		<img src="img/back.jpg">
+		//-->
+		
+		</div>
+	</body>
+</html>

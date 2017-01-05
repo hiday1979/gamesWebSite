@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset= "utf-8">
+		<style>	
+		.all {
+			margin-left:40%;
+			margin-top:5%;
+		}
+			.cell 
+				{
+					width: 110px;
+					height: 110px;
+					background-color: pink;
+					margin: 1px;
+					float: left;
+					font-weight: bold;
+					font-size: 500% ;
+					text-align: center; 
+					
+				}
+			.clear 
+				{
+					clear: both ;
+				}
+			.name
+				{
+					font-size: 20px ;
+					width: 150px;
+					height: 20px;
+				}
+				
+		</style>
+		<script>
+			var x = "x";
+			var o = "o";
+			var turn = 1;
+			var off = 1;  
+			var namex;
+			var nameo;
+			var start = false;
+			function init ()
+			
+				{
+					var divs = document.getElementsByTagName("div");
+					for (var i = 0; i<divs.length; i++)
+						{
+							divs[i].style.height = divs[i].clientWidth + "px";
+							
+						}
+				}
+			function check (_id_div1, ver ,_id_div2 , _id_div3 ) 
+				{
+					if (_id_div1.innerHTML == ver &&  _id_div2.innerHTML == ver && _id_div3.innerHTML == ver )
+						{
+							if (ver == x)
+								{
+									alert (" "+ namex +" win") ;
+									off = 2 ;
+									 location.reload();
+								}
+							else 
+								{
+									alert (" "+ nameo +" win") ;
+									off = 2 
+									 location.reload();
+								}
+						}		
+				}
+			function drew () 
+					{
+						if	(off == 1 && id_div1.innerHTML != "" &&  id_div2.innerHTML != "" && id_div3.innerHTML != "" &&
+						id_div4.innerHTML != "" &&  id_div5.innerHTML != "" && id_div6.innerHTML != "" &&
+						id_div7.innerHTML != "" &&  id_div8.innerHTML != "" && id_div9.innerHTML != "")
+						{
+							alert ("hahaha its a drwe!!!");
+						}	
+					}
+				
+			function move (id_div) 
+				{
+				if (start){
+					if (id_div.innerHTML == "")
+						{
+						if (turn == 1)
+							{
+							id_div.innerHTML = x ;
+							turn = 2 ;
+							id_turn.innerHTML = nameo ;
+							}
+						else 
+							{
+							id_div.innerHTML = o;
+							turn = 1 ;
+							id_turn.innerHTML = namex;
+							}
+						}
+					}	
+					check (id_div1 ,o ,id_div2 ,id_div3)
+					check (id_div4 ,o ,id_div5 ,id_div6)
+					check (id_div7 ,o ,id_div8 ,id_div9)
+					check (id_div1 ,o ,id_div4 ,id_div7)
+					check (id_div2 ,o ,id_div5 ,id_div8)
+					check (id_div3 ,o ,id_div6 ,id_div9)
+					check (id_div1 ,o ,id_div5 ,id_div9)
+					check (id_div3 ,o ,id_div5 ,id_div7)
+					check (id_div1 ,x ,id_div2 ,id_div3)
+					check (id_div4 ,x ,id_div5 ,id_div6)
+					check (id_div7 ,x ,id_div8 ,id_div9)
+					check (id_div1 ,x ,id_div4 ,id_div7)
+					check (id_div2 ,x ,id_div5 ,id_div8)
+					check (id_div3 ,x ,id_div6 ,id_div9)
+					check (id_div1 ,x ,id_div5 ,id_div9)
+					check (id_div3 ,x ,id_div5 ,id_div7)
+					drew ()
+				}
+			function onclickname ()
+				{
+					namex = id_namex.innerHTML = id_inputx.value ;
+					nameo = id_nameo.innerHTML = id_inputo.value ;
+					start = true;
+					id_turn.innerHTML = namex;
+					//alert(namex);
+					//alert(nameo);
+				}
+			window.onresize = init ; 
+		</script>
+	</head>
+	<body onload>
+	<div class="all">
+		<span class = "name">
+		player x name:
+		<span class = "name" id ="id_namex">
+		<input id="id_inputx" type= "text"></input>
+		</span>
+		</span>
+		<br>
+		<span class = "name">
+		player o name:
+		<span class = "name" id = "id_nameo">
+		<input id="id_inputo" type= "text"></input>
+		</span>
+		</span>
+		<br>
+		<button id = "id_buttononclickname" onclick = "onclickname ()">אישור</button>
+		<br>
+		<div id="id_div1" class="cell" onclick = "move (id_div1)"></div>
+		<div id="id_div2" class="cell" onclick = "move (id_div2)"></div>
+		<div id="id_div3" class="cell" onclick = "move (id_div3)"></div>
+		<div class = "clear cell" id="id_div4" onclick = "move (id_div4)"></div>
+		<div id="id_div5" class="cell" onclick = "move (id_div5)"></div>
+		<div id="id_div6" class="cell" onclick = "move (id_div6)"></div>
+		<div class = "clear cell" id="id_div7" onclick = "move (id_div7)"></div>
+		<div id="id_div8" class="cell" onclick = "move (id_div8)"></div>
+		<div id="id_div9" class="cell" onclick = "move (id_div9)"></div>
+		</div>
+		<div class="clear"></div>
+		<p class="par">its <span id="id_turn"></span> turn</p>
+	
+	</body>
+</html>
+
+
