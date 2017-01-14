@@ -37,8 +37,7 @@ router.post('/addUser', function(req, res, next) {
     //
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
-    var userName = req.body,
-        userName;
+    var userName = req.body.userName;
     var email = req.body.email;
     var password = req.body.password;
 
