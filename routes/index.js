@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET users table page. */
-
+/*
 router.get('/initDb', function(req, res, next) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if (err) {
@@ -30,6 +30,7 @@ router.get('/initDb', function(req, res, next) {
     });
 });
 
+*/
 
 /* POST Add Users page. */
 router.post('/addUser', function(req, res, next) {
@@ -62,6 +63,34 @@ router.post('/addUser', function(req, res, next) {
                 title: "succeesfully added user",
                 users: result.rows
 
+            });
+        });
+    });
+});
+
+/* GET Users page. */
+router.get('/users', function(req, res, next) {
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        if (err) {
+            return res.render('error', {
+                error: err,
+                message: err.message
+            });
+        }
+        var SQL = "SELECT * FROM users ORDER BY firstName";
+        client.query(SQL, function(err, result) {
+            if (err) {
+                return res.render('error', {
+                    error: err,
+                    message: err.message
+                });
+            }
+
+            done();
+            // res.json({users:result.rows});
+            res.render('users', {
+                title: "Users List",
+                users: result.rows
             });
         });
     });
