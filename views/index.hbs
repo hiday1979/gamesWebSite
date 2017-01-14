@@ -58,7 +58,18 @@
                             <h1 >The ultimate games site<br/>
                             <span id="span1">Play,<span/><span id="span2"> Enjoy,</span>
                             <span id="span3"> Have fun</span></h1>   
-         
+         {{#each users}}
+        <tr>
+            
+            <td  id="{{id}}" >{{id}}</td>
+            <td>{{firstname}}</td>
+            <td>{{lastname}}</td>
+            <td>{{email}}</td>
+            <td>{{username}}</td>
+            <td>{{password}}</td>
+            
+        </tr>
+        {{/each}}
                         </div>
                     </div>
                 </div>
