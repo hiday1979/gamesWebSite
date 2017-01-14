@@ -1,0 +1,84 @@
+<header id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>The ultimate games site<br/>
+                    <span id="span1">Play,<span/><span id="span2"> Enjoy,</span>
+                    <span id="span3"> Have fun</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="text-center" style="padding:20px 0">
+        <div class="logo">login</div>
+        <!-- Main Form -->
+        <div class="login-form-1">
+            <form method="POST" id="login-form" class="text-left" action="/index">
+                <div class="login-form-main-message"></div>
+                <div class="main-login-form">
+                    <div class="login-group">
+                        <div class="form-group">
+                            <label for="lg_username" class="sr-only">Username</label>
+                            <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_password" class="sr-only">Password</label>
+                            <input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+                        </div>
+                        <div class="form-group login-group-checkbox">
+                            <input type="checkbox" id="lg_remember" name="lg_remember">
+                            <label for="lg_remember">remember</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                </div>
+                <!--<p>forgot your password? <a href="/forgotPassword">click here</a></p>-->
+            </form>
+            <span style="color: wheat">new user? </span>
+            <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit">create new account<span class="glyphicon glyphicon-pencil"></span></button></p>
+        </div>
+    </div>
+    <!-- end:Main Form -->
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <form method="POST" action="/addUser" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                        <h4 class="modal-title custom_align" id="Heading">Wellcame</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" id="id_edit" name="id_edit" class="form-control">
+                            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name...">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="lastName" name="lastName" class="form-control " placeholder="Last Name...">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-control " placeholder="Email...">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" class="form-control " placeholder="Password...">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control " placeholder="Confirm password...">
+                            <span id='message'></span>
+                            </input>
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Join</button>
+                        </div>
+                    </div>
+                 </form>
+            </div>
+        </div>
+</header>
+<script>
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#password').val() == $('#confirm_password').val()) {
+            $('#message').html('Matching').css('color', 'green');
+        } else
+            $('#message').html('Not Matching').css('color', 'red');
+    });
+</script>
