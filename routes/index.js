@@ -99,33 +99,34 @@ router.get('/users', function(req, res, next) {
 
 /* log in*/
 router.post('/login', function(req, res, next) {
-    /*
-        var email = req.body.email;
-        var password = req.body.password;
 
-        pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-            if (err) {
-                return res.render('error', {
-                    error: err,
-                    message: err.message
-                });
-            }
-            var SQL = "SELECT email, password FROM users WHERE email=$1;";
-            client.query(SQL, [email], function(err, result) {
-                if (err) {
-                    return res.render('error', {
-                        error: err,
-                        message: err.message
-                    });
-                }
-                done();
-                if (email == users: result.email || password == users: result.password) {
-                    */
-    res.render('index', {
-        title: "succeesfully added user",
-        users: result.rows
-    });
+            var email = req.body.email;
+            var password = req.body.password;
 
-});
+            pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+                        if (err) {
+                            return res.render('error', {
+                                error: err,
+                                message: err.message
+                            });
+                        }
+                        var SQL = "SELECT email, password FROM users WHERE email=$1;";
+                        client.query(SQL, [email], function(err, result) {
+                            if (err) {
+                                return res.render('error', {
+                                    error: err,
+                                    message: err.message
+                                });
+                            }
+                            done();
+                            /*
+                            if (email == users: result.email || password == users: result.password) {
+                                */
+                            res.render('index', {
+                                title: "succeesfully added user",
+                                users: result.rows
+                            });
 
-module.exports = router;
+                        });
+
+                        module.exports = router;
