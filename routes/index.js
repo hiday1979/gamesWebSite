@@ -97,7 +97,7 @@ router.get('/users', function(req, res, next) {
     });
 });
 
-/* log in*/
+/* log in
 router.post('/login', function(req, res, next) {
 
     var email = req.body.email;
@@ -128,5 +128,5 @@ router.post('/login', function(req, res, next) {
         });
     });
 });
-
+*/
 module.exports = router;
