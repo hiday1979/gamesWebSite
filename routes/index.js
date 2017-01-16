@@ -139,7 +139,11 @@ router.post('/login', function(req, res, next) {
             res.render('index', {
                 title: "Wellcame Back",
              });
-           }      
+           } 
+           return res.render('error', {
+                    error: err,
+                    message: "mail is incorrect"
+             });     
         });
     });
 });
