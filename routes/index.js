@@ -128,7 +128,7 @@ router.post('/login', function(req, res, next) {
                     message: err.message
                 });
             }
-            done();
+            
             if (email == "2" || password == "2") {
                 return res.render('error', {
                     error: err,
@@ -148,6 +148,7 @@ router.post('/login', function(req, res, next) {
              res.render('index', {
                 title: "didnt work"  
         });
+        done();
     });
   });
 });
