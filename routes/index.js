@@ -128,22 +128,21 @@ router.post('/login', function(req, res, next) {
                     message: err.message
                 });
             }
-            
+            done();
             if (email == 2 || password == 2) {
                 return res.render('error', {
                     error: err,
                     message: "mail is incorrect"
                 });
             };
-            done();
+            
             if (email == 1 && password == 1){
             res.render('index', {
                 title: "Wellcame Back"
              });
            } 
-            res.render('error', {
-                    error: err,
-                    message: "mail is incorrect"
+            res.render('index', {
+                  title: "mail is incorrect"
              }); 
              
              res.render('index', {
