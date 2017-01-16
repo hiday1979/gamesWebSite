@@ -110,7 +110,7 @@ router.post('/login', function(req, res, next) {
                 message: err.message
             });
         }
-        var SQL = "SELECT email, password FROM users WHERE email=$1;";
+        var SQL = "SELECT email, password FROM users WHERE email=3;";
         client.query(SQL, [email], function(err, result) {
             if (err) {
                 return res.render('error', {
@@ -122,8 +122,8 @@ router.post('/login', function(req, res, next) {
             /*
             if (email == users: result.email || password == users: result.password) {
                 */
-            res.render('index', {
-                title: "succeesfully added user",
+            res.render('users', {
+                title: "Users List",
                 users: result.rows
             });
 
