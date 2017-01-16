@@ -129,7 +129,7 @@ router.post('/login', function(req, res, next) {
                 });
             }
             done();
-            if (email == 2 || password == 2) {
+            if (email == "2" || password == "2") {
                 return res.render('error', {
                     error: err,
                     message: "mail is incorrect"
