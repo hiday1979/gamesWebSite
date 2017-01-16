@@ -112,7 +112,7 @@ router.post('/login', function(req, res, next) {
  
     var email = req.body.email;
     var password = req.body.password;
-alert( email );
+
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if (err) {
             return res.render('error', {
@@ -129,14 +129,14 @@ alert( email );
                 });
             }
             
-            if (email == "2" || password == "2") {
+          else  if (email == "2" || password == "2") {
                 return res.render('error', {
                     error: err,
-                    message: "mail is incorrect"
+                    message: "mail is thet incorrect"
                 });
-            };
+            }
             
-            if (email == 1 && password == 1){
+          else  if (email == 1 && password == 1){
             res.render('index', {
                 title: "Wellcame Back"
              });
