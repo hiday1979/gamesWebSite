@@ -9,14 +9,17 @@ router.get('/', function(req, res, next) {
     });
 });
 
+/* GET index page. */
+/*
 router.get('/index', function(req, res, next) {
     res.render('index', {
         title: 'GamesWebSite'
     });
 });
+*/
 
 /* GET users table page. */
-/*
+
 router.get('/initDb', function(req, res, next) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if (err) {
@@ -39,7 +42,7 @@ router.get('/initDb', function(req, res, next) {
     });
 });
 
-*/
+
 
 /* POST Add Users page. */
 router.post('/addUser', function(req, res, next) {
@@ -126,13 +129,10 @@ router.post('/login', function(req, res, next) {
                 });
             }
             done();
-            /*
-            if (email == users: result.email || password == users: result.password) {
-                */
-            res.render('users', {
-                title: "Users List",
-                users: result.rows
-            });
+           
+            res.render('index', {
+                title: "Wellcame Back",
+             });
 
         });
     });
