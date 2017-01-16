@@ -112,7 +112,7 @@ router.post('/login', function(req, res, next) {
  
     var email = req.body.email;
     var password = req.body.password;
-
+alert( email );
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if (err) {
             return res.render('error', {
@@ -144,10 +144,7 @@ router.post('/login', function(req, res, next) {
             res.render('index', {
                   title: "mail is incorrect"
              }); 
-             
-             res.render('index', {
-                title: "didnt work"  
-        });
+                         
         done();
     });
   });
