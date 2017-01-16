@@ -109,7 +109,7 @@ router.get('/users', function(req, res, next) {
 
 /* log in*/
 router.post('/login', function(req, res, next) {
-
+ 
     var email = req.body.email;
     var password = req.body.password;
 
