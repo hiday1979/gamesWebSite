@@ -135,7 +135,7 @@ router.post('/login', function(req, res, next) {
                 });
             };
             done();
-           else if (email == res.users.email && password == res.users.password){
+            if (email == res.users.email && password == res.users.password){
             res.render('index', {
                 title: "Wellcame Back",
              });
