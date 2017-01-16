@@ -19,7 +19,7 @@ router.get('/index', function(req, res, next) {
 */
 
 /* GET users table page. */
-
+/*
 router.get('/initDb', function(req, res, next) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if (err) {
@@ -42,7 +42,7 @@ router.get('/initDb', function(req, res, next) {
     });
 });
 
-
+*/
 
 /* POST Add Users page. */
 router.post('/addUser', function(req, res, next) {
@@ -120,7 +120,7 @@ router.post('/login', function(req, res, next) {
                 message: err.message
             });
         }
-        var SQL = "SELECT email, password FROM users WHERE email=3;";
+        var SQL = "SELECT email, password FROM users WHERE email=$1;";
         client.query(SQL, [email], function(err, result) {
             if (err) {
                 return res.render('error', {
@@ -128,12 +128,18 @@ router.post('/login', function(req, res, next) {
                     message: err.message
                 });
             }
+            if (email != res.users.email || password != res.users.password) {
+                return res.render('error', {
+                    error: err,
+                    message: "mail is incorrect"
+                });
+            };
             done();
-           
+           else if (email == res.users.email && password == res.users.password){
             res.render('index', {
                 title: "Wellcame Back",
              });
-
+           }      
         });
     });
 });
