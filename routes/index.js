@@ -141,7 +141,7 @@ router.post('/login', function(req, res, next) {
                 title: "Wellcame Back"
              });
            } 
-            res.render('index', {
+           else res.render('index', {
                   title: "mail is incorrect"
              }); 
                          
