@@ -140,7 +140,7 @@ router.post('/login', function(req, res, next) {
                 title: "Wellcame Back",
              });
            } 
-           return res.render('error', {
+            res.render('error', {
                     error: err,
                     message: "mail is incorrect"
              });     
