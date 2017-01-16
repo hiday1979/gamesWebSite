@@ -129,10 +129,10 @@ router.post('/login', function(req, res, next) {
                 });
             }
             
-          else  if (email == "2" || password == "2") {
+           if (email == "2" || password == "2") {
                 return res.render('error', {
                     error: err,
-                    message: "mail is thet incorrect"
+                    message: "thet incorrect"
                 });
             }
             
