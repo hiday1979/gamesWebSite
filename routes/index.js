@@ -119,7 +119,7 @@ router.post('/login', function(req, res, next) {
                 error: err,
                 message: err.message
             });
-        }
+        };
         var SQL = "SELECT email, password FROM users WHERE email=$1;";
         client.query(SQL, [email], function(err, result) {
             if (err) {
