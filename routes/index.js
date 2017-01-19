@@ -138,7 +138,7 @@ router.post('/login', function(req, res, next) {
             
           else  if (userName == 1 && password == 1){
             res.render('index', {
-                title: "Wellcame Back"
+                title: result.rows[0]
              })
            } 
            
