@@ -108,6 +108,7 @@ router.get('/users', function(req, res, next) {
 });
 
 /* log in*/
+/*
 router.post('/login', function(req, res, next) {
  
     var userName = req.body.lg_username;
@@ -122,6 +123,9 @@ router.post('/login', function(req, res, next) {
         };
         var SQL = "SELECT userName, password FROM users WHERE userName=$1;";
         client.query(SQL, [userName], function(err, result) {
+
+            return res.json(result);
+            
             if (err) {
                 return res.render('error', {
                     error: err,
@@ -138,7 +142,7 @@ router.post('/login', function(req, res, next) {
             
           else  if (userName == 1 && password == 1){
             res.render('index', {
-                title: result.rows[0]
+                title: result.rows[0].email
              })
            } 
            
@@ -150,5 +154,24 @@ router.post('/login', function(req, res, next) {
     });
   });
 });
+*/
+
+router.post('/login', function(req, res, next) {
+ 
+    var userName = req.body.lg_username;
+    var password = req.body.lg_password;
+
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        if (err) {
+            return res.render('error', {
+                error: err,
+                message: err.message
+            });
+        };
+        var SQL = "SELECT userName, password FROM users WHERE userName=$1;";
+        client.query(SQL, [userName], function(err, result) {
+
+            return res.json(result);
+})})})
 
 module.exports = router;
