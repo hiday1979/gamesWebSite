@@ -128,7 +128,7 @@ router.post('/login', function(req, res, next) {
                     message: err.message
                 })
             };
-            
+            done();
            if (email == "" || password == "") {
                 return res.render('error', {
                     error: err,
@@ -136,16 +136,17 @@ router.post('/login', function(req, res, next) {
                 })
             }
             
-          else  if (email == result.rows && password == result.rows){
+          else  if (email == result.rows[2] && password == result.rows[4]){
             res.render('index', {
                 title: "Wellcame Back"
              })
            } 
+           /*
            else {res.render('index', {
                   title: "mail is incorrect"
              })
            }             
-        done();
+        */
     });
   });
 });
