@@ -110,8 +110,8 @@ router.get('/users', function(req, res, next) {
 /* log in*/
 router.post('/login', function(req, res, next) {
  
-    var email = req.body.email;
-    var password = req.body.password;
+    var email = req.body.lg_username;
+    var password = req.body.lg_password;
 
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if (err) {
@@ -127,7 +127,7 @@ router.post('/login', function(req, res, next) {
                     error: err,
                     message: err.message
                 })
-            }
+            };
             
            if (email == "2" || password == "2") {
                 return res.render('error', {
