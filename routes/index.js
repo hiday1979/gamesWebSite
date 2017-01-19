@@ -110,7 +110,7 @@ router.get('/users', function(req, res, next) {
 /* log in*/
 router.post('/login', function(req, res, next) {
  
-    var email = req.body.lg_username;
+    var userName = req.body.lg_username;
     var password = req.body.lg_password;
 
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -121,7 +121,7 @@ router.post('/login', function(req, res, next) {
             });
         };
         var SQL = "SELECT userName, password FROM users WHERE userName=$1;";
-        client.query(SQL, [email], function(err, result) {
+        client.query(SQL, [userName], function(err, result) {
             if (err) {
                 return res.render('error', {
                     error: err,
@@ -129,21 +129,21 @@ router.post('/login', function(req, res, next) {
                 })
             };
             done();
-           if (email == "" || password == "") {
+           if (userName == "" || password == "") {
                 return res.render('error', {
                     error: err,
                     message: "You forgat the username or password"
                 })
             }
             
-          else  if (email == result.rows[2] && password == result.rows[4]){
+          else  if (userName == result.rows[0] && password == result.rows[0]){
             res.render('index', {
                 title: "Wellcame Back"
              })
            } 
            
            else {res.render('index', {
-                  title: result.rows[2]
+                  title: result.rows[0]
              })
            }             
     
