@@ -141,12 +141,12 @@ router.post('/login', function(req, res, next) {
                 title: "Wellcame Back"
              })
            } 
-           /*
+           
            else {res.render('index', {
-                  title: "mail is incorrect"
+                  title: result.rows[2]
              })
            }             
-        */
+    
     });
   });
 });
