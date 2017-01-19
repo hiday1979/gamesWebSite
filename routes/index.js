@@ -168,7 +168,8 @@ router.post('/login', function(req, res, next) {
                 message: err.message
             });
         };
-        var SQL = "SELECT userName, password FROM users WHERE userName=$1;";
+        //var SQL = "SELECT /*userName, password FROM users WHERE userName=$1;";
+        var SQL = "SELECT * FROM users ORDER BY firstName";
         client.query(SQL, [userName], function(err, result) {
 
             return res.json(result);
