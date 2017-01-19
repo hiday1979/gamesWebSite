@@ -136,7 +136,7 @@ router.post('/login', function(req, res, next) {
                 })
             }
             
-          else  if (email == res.result.email && password == res.result.email){
+          else  if (email == users.result.email && password == users.result.email){
             res.render('index', {
                 title: "Wellcame Back"
              })
