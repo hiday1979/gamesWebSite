@@ -129,14 +129,14 @@ router.post('/login', function(req, res, next) {
                 })
             };
             
-           if (email == "2" || password == "2") {
+           if (email == "" || password == "") {
                 return res.render('error', {
                     error: err,
-                    message: "thet incorrect"
+                    message: "You forgat the username or password"
                 })
             }
             
-          else  if (email == 1 && password == 1){
+          else  if (email == res.result.email && password == res.result.email){
             res.render('index', {
                 title: "Wellcame Back"
              })
