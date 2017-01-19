@@ -126,24 +126,24 @@ router.post('/login', function(req, res, next) {
                 return res.render('error', {
                     error: err,
                     message: err.message
-                });
+                })
             }
             
            if (email == "2" || password == "2") {
                 return res.render('error', {
                     error: err,
                     message: "thet incorrect"
-                });
+                })
             }
             
           else  if (email == 1 && password == 1){
             res.render('index', {
                 title: "Wellcame Back"
-             });
+             })
            } 
            else {res.render('index', {
                   title: "mail is incorrect"
-             }); 
+             })
            }             
         done();
     });
