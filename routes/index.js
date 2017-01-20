@@ -169,7 +169,7 @@ router.post('/login', function(req, res, next) {
             });
         };
         //var SQL = "SELECT /*userName, password FROM users WHERE userName=$1;";
-        var SQL = "SELECT * FROM users Where firstname=Irad ORDER BY firstName";
+        var SQL = "SELECT FROM users Where firstname=Irad ORDER BY firstName";
         client.query(SQL,  function(err, result) {
 
             return res.json(result);
