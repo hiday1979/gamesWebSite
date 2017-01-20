@@ -188,7 +188,7 @@ router.post('/login', function(req, res, next) {
             
          // else  if (userName == result.rows.username && password == result.rows[1]){
             res.render('index', {
-                title: "Wellcame"+ result.rows[username]
+                title: "Wellcame"+ result.rows[1]
              })
            } 
 )})});
