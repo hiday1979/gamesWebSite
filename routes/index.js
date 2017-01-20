@@ -172,7 +172,25 @@ router.post('/login', function(req, res, next) {
         var SQL = "SELECT username,password FROM users WHERE username=$1";
         client.query(SQL,[userName],  function(err, result) {
 
-            return res.json(result);
+           /* return res.json(result);*/
+            if (err) {
+                return res.render('error', {
+                    error: err,
+                    message: err.message
+                })
+            };
+            done();
+           if (userName == "" || password == "") {
+                return res.render('login', {
+                    message: "You forgat the username or password"
+                })
+            }
+            
+          else  if (userName == result.rows[0] && password == result.rows[1]){
+            res.render('index', {
+                title: "Wellcame"+ result.rows[0]
+             })
+           } 
 })})})
 
 module.exports = router;
