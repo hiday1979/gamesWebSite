@@ -186,11 +186,11 @@ router.post('/login', function(req, res, next) {
                 })
             }
             
-         // else  if (userName == result.rows.username && password == result.rows[1]){
+          else  if (userName == result.rows[0].username && password == result.rows[0].password){
             res.render('index', {
-                title: "Wellcame"+ result.rows[0].username
+                title: "Wellcame "+ result.rows[0].username
              })
            } 
-)})});
+})})});
 
 module.exports = router;
