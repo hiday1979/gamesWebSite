@@ -182,11 +182,11 @@ router.post('/login', function(req, res, next) {
             done();
            if (userName == "" || password == "") {
                 return res.render('login', {
-                    message: "You forgat the username or password"
+                    title: "You forgat the username or password"
                 })
             }
             
-          else  if (userName == result.rows[0] && password == result.rows[1]){
+         // else  if (userName == result.rows.username && password == result.rows[1]){
             res.render('index', {
                 title: "Wellcame"+ result.rows[0]
              })
