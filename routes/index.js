@@ -191,6 +191,6 @@ router.post('/login', function(req, res, next) {
                 title: "Wellcame"+ result.rows[0]
              })
            } 
-)})
+)})});
 
 module.exports = router;
