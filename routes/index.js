@@ -169,8 +169,8 @@ router.post('/login', function(req, res, next) {
             });
         };
         //var SQL = "SELECT /*userName, password FROM users WHERE userName=$1;";
-        var SQL = "SELECT username FROM users ORDER BY firstName";
-        client.query(SQL,  function(err, result) {
+        var SQL = "SELECT username,password FROM users WHERE username=$1";
+        client.query(SQL,[userName],  function(err, result) {
 
             return res.json(result);
 })})})
