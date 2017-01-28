@@ -99,9 +99,9 @@ router.get('/users', function(req, res, next) {
 
 /* log in*/
 router.post('/login', function(req, res, next) {
-
-    var email = req.body.email;
-    var password = req.body.password;
+ 
+    var userName = req.body.lg_username;
+    var password = req.body.lg_password;
 
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if (err) {
@@ -109,24 +109,30 @@ router.post('/login', function(req, res, next) {
                 error: err,
                 message: err.message
             });
-        }
-        var SQL = "SELECT email, password FROM users WHERE email=$1;";
-        client.query(SQL, [email], function(err, result) {
+        };
+        //var SQL = "SELECT /*userName, password FROM users WHERE userName=$1;";
+        var SQL = "SELECT username,password FROM users WHERE username=$1";
+        client.query(SQL,[userName],  function(err, result) {
+
+           /* return res.json(result);*/
             if (err) {
                 return res.render('error', {
                     error: err,
                     message: err.message
-                });
-            }
+                })
+            };
             done();
-
+           if (userName == "" || password == "") {
+                return res.render('login', {
+                    title: "You forgat the username or password"
+                })
+            }
+            
+          else  if (userName == result.rows[0].username && password == result.rows[0].password){
             res.render('index', {
-                title: "succeesfully loged in",
-                users: result.rows
-            });
-
-        });
-    });
-});
+                title: "Wellcame "+ result.rows[0].username
+             })
+           } 
+})})});
 
 module.exports = router;
